@@ -1,0 +1,7 @@
+.tox
+.env
+.pytest.ini
+.coveragerc
+tox.ini
+*/__pycache__/*
+.pytest
