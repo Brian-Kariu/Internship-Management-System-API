@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'accounts.apps.AccountsConfig',
     'internsystem.apps.InternsystemConfig',
+    'corsheaders',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -52,7 +53,8 @@ AUTH_USER_MODEL = 'accounts.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -77,6 +79,15 @@ TEMPLATES = [
         },
     },
 ]
+
+#CORS headers
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','https://*.127.0.0.1']
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
 
 #Authentication settings
 LOGIN_REDIRECT_URL = "home"

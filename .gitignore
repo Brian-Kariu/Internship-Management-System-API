@@ -2,6 +2,9 @@
 .env
 .pytest.ini
 .coveragerc
+.coverage
 tox.ini
 */__pycache__/*
-.pytest
+.pytest*
+pytest.ini
+*.pyc
