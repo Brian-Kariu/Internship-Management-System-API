@@ -24,8 +24,7 @@ def RegisterView(request):
     try:
         user = User.objects.create(
             email=data['email'],
-            password=make_password(data['password']),
-            date_of_birth=data['date_of_birth']
+            password=make_password(data['password'])
         )
 
         serializer = UserSerializerWithToken(user, many=False)
