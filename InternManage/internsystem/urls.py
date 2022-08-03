@@ -2,12 +2,16 @@ from django.conf.urls import include
 from django.urls import path
 from internsystem.views import (ApplicationViewSet, JobViewSet,
                                 LecturerViewSet, OrganizationViewSet,
-                                SessionView, StudentViewSet, WhoAmIView,
-                                get_csrf, logout_view)
+                                SessionView, StudentProfileViewSet,
+                                StudentViewSet, WhoAmIView, get_csrf,
+                                logout_view)
 from rest_framework.routers import SimpleRouter
 
 student_router = SimpleRouter()
 student_router.register('', StudentViewSet)
+
+studentprofile_router = SimpleRouter()
+studentprofile_router.register('', StudentProfileViewSet, basename="StudentProfile")
 
 lecturer_router = SimpleRouter()
 lecturer_router.register('', LecturerViewSet)
@@ -23,6 +27,7 @@ Application_router.register('', ApplicationViewSet)
 
 internsystem_urls = [
     path('student/', include(student_router.urls)),
+    path('studentprofile/', include(studentprofile_router.urls)),
     path('lecturer/', include(lecturer_router.urls)),
     path('organization/', include(organization_router.urls)),
     path('job/', include(job_router.urls)),

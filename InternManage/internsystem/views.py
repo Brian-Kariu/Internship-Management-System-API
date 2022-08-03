@@ -29,6 +29,17 @@ class StudentViewSet(ModelViewSet):
     filter_fields = ['field_of_specialization', 'organization']
     search_fields = ['first_name', 'field_of_specialization', 'organization']
 
+class StudentProfileViewSet(ModelViewSet):
+    model = Student
+    serializer_class = StudentSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filter_fields = ['field_of_specialization', 'organization']
+    search_fields = ['first_name', 'field_of_specialization', 'organization']
+
+    def get_queryset(self):
+        return self.request.user.student_user.all()
+
 
 class LecturerViewSet(ModelViewSet):
     model = Lecturer
